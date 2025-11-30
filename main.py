@@ -1,4 +1,4 @@
-eimport pandas as pd
+import pandas as pd
 import matplotlib.pyplot as plt
 
 df = pd.read_csv("data.csv")
@@ -13,7 +13,7 @@ df.set_index('Datetime', inplace=True)
 
 # TODO: Crear funcion para convertir de grados Kelvin a Celsius
 def kelvin_to_celsius(kelvin):
-    return kelvin − 273.15
+    return kelvin - 273.15
 
 # TODO: Copiar el DataFrame original y nombralo df_celsius
 df_celsius = df.copy()
