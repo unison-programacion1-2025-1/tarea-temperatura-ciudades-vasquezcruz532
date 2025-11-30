@@ -13,22 +13,41 @@ df.set_index('Datetime', inplace=True)
 
 # TODO: Crear funcion para convertir de grados Kelvin a Celsius
 def kelvin_to_celsius(kelvin):
-    pass
-    
+    return kelvin - 273.15
 
 # TODO: Copiar el DataFrame original y nombralo df_celsius
-
+df_celsius = df.copy()
 # TODO: Convertir las temperaturas de cada ciudad de Kelvin a Celsius usando la funcion creada
-
+df_celsius["San Diego"] = df_celsius["San Diego"].apply(kelvin_to_celsius)
+df_celsius["Phoenix"] = df_celsius["Phoenix"].apply(kelvin_to_celsius)
+df_celsius["Toronto"] = df_celsius["Toronto"].apply(kelvin_to_celsius)
 # Analisis
 
 # TODO: Imprime que día y hora se registró la temperatura mínima en Phoenix con el siguiente mensaje: "El día con la temperatura mínima en Phoenix fue: {fecha}"
+
+fecha_min = df_celsius['Phoenix'].idxmin()
+print(f"El día con la temperatura mínima en Phoenix fue: {fecha_min}")
+
 # TODO: Imprime la temperatura mínima en Phoenix con el siguiente mensaje: "La temperatura mínima registrada en Phoenix fue de: ", temperatura, " °C""
 
+temp_min = df_celsius['Phoenix'].min()
+print(f"La temperatura mínima registrada en Phoenix fue de: {temp_min:.2f} °C")
+
 # TODO: Imprime que día y hora se registró la temperatura máxima en Phoenix con el siguiente mensaje: "El día con la temperatura máxima en Phoenix fue: {fecha}"
+
+fecha_max = df_celsius['Phoenix'].idxmax()
+print(f"El día con la temperatura máxima en Phoenix fue: {fecha_max}")
+
 # TODO: Imprime la temperatura máxima en Phoenix con el siguiente mensaje: "La temperatura máxima registrada en Phoenix fue de: ", temperatura, " °C""
 
+temp_max = df_celsius['Phoenix'].max()
+print(f"La temperatura máxima registrada en Phoenix fue de: {temp_max:.2f} °C")
+
 # TODO: Imprime la temperatura promedio en Phoenix durante el año 2016 con el siguiente mensaje: "La temperatura promedio durante 2016 en Phoenix fue de: ", temperatura, " °C""
+
+p_2016 = df_celsius['Phoenix']['2016']
+temp_promedio = p_2016.mean()
+print(f"La temperatura promedio durante 2016 en Phoenix fue de: {temp_promedio:.1f} °C")
 
 # Graficar la temperatura de Phoenix durante el año 2016
 plt.figure(figsize=(20, 10))
